@@ -2,7 +2,7 @@ const {db} = require('./dbConnect');
 const Genres = {};
 
 
-//READ ALL USERS
+//READ ALL GENRES
 Genres.readAll = () => {
     const sql = `SELECT * FROM genres`;
     return db.any(sql, {})

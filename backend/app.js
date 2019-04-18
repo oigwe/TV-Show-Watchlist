@@ -8,8 +8,8 @@ const cors = require('cors');
 //ROUTERS
 const usersRouter = require('./routes/users');
 const genresRouter = require('./routes/genres');
-/*const showsRouter = require('./routes/shows');
-const commentsRouter = require('./routes/comments');*/
+const showsRouter = require('./routes/shows');
+/*const commentsRouter = require('./routes/comments');*/
 
 //MIDDLEWARE
 
@@ -21,8 +21,8 @@ app.use(cors());
 //ROUTES
 app.use('/users', usersRouter);
 app.use('/genres', genresRouter);
-/*app.use('/shows', showsRouter)
-app.use('/comments', commentsRouter)*/
+app.use('/shows', showsRouter)
+/*app.use('/comments', commentsRouter)*/
 
 
 app.use((err, req, res, next)=>{
