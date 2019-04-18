@@ -3,6 +3,7 @@ import {HashRouter, Switch, Route} from 'react-router-dom';
 
 //PAGE
   //HOME
+  import Home from './containers/home';
   //MASTER USER LIST
   //USER PROFILE PAGE
   //USER ADD SHOW
@@ -15,12 +16,14 @@ class App extends Component {
     return (
         <HashRouter>
           <Switch>
-            <Route path='/'/>
+            <Route path='/' component={Home}/>
             <Route path='/users' exact/>
             <Route path='/users:id' />
             <Route path='/user/post'/>
             <Route path='/shows' exact />
             <Route path='/show/:id' />
+            <Route path='/genres' />
+
           </Switch>
         </HashRouter>
     );
