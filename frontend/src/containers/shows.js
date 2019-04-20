@@ -17,6 +17,26 @@ class Shows extends React.Component {
 
     }
 
+    getUnique = (arr, comp) =>{
+        const newArr = []
+        arr.map((e,i) =>{ 
+            console.log(e) 
+             return e[comp]})
+
+        .map((e, i, arrOfTitles)=> {
+            console.log(e, i, arrOfTitles)
+            return arrOfTitles.indexOf(e) === i })
+
+        .filter((e, i) => {
+            if(e === true){
+                newArr.push(arr[i])
+                console.log(newArr)
+            }
+            return newArr
+        })
+                return newArr
+    }
+
     componentDidMount() {
         readAllShows()
             .then((response)=>{
@@ -38,9 +58,14 @@ class Shows extends React.Component {
                 </div>
                 <div className="d-flex flex-row" style={{overflow:"scroll"}}>
                 {
-                    this.state.tvShow.map((e,i)=>{
 
-                    })
+                    this.state.tvShow.length > 0 ? this.getUnique(this.state.tvShow, 'title').map((e,i)=>{
+
+                        return <>
+                        <img src={e.img_url} style={{height: '200px'}} alt={e.title}/>
+                        </>
+
+                    }) : null
                 }
                 </div>
                 </div>
