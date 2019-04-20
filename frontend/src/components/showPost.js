@@ -22,16 +22,6 @@ class ShowPost extends React.Component {
         }
     }
 
-
-    handleSubmit = () => {
-        if (!this.state.inputValue) { return }
-        else {
-
-        }
-
-
-    }
-
     componentDidMount = () => {
         this.setState({
             currentUser: JSON.parse(localStorage.getItem("currentUser"))
@@ -46,6 +36,15 @@ class ShowPost extends React.Component {
 
     handleTitleInputValue = (e) => {
         this.setState({ titleValue: e.target.value })
+    }
+
+    handleSubmit = () => {
+        if (!this.state.inputValue) { return }
+        else {
+
+        }
+
+
     }
 
 
