@@ -4,7 +4,7 @@ const Shows = {};
 
 //READ ALL SHOWS
 Shows.readAll = () => {
-    const sql = `SELECT * FROM shows`;
+    const sql = `SELECT genres.*, shows.img_url, shows.title, shows.genre_id, shows.id  FROM shows JOIN genres ON shows.genre_id = genres.id`;
     return db.any(sql, {})
 }
 
