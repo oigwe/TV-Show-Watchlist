@@ -62,7 +62,7 @@ tvShowRouter.get('/:showid', (req, res, next) => {
 });
 
 
-//GET SPECIFIC ShOW
+//POST SPECIFIC ShOW
 
 tvShowRouter.post('/create', (req, res, next) => {
     const {title, img_url, user_id, genre_id} = req.body

@@ -16,5 +16,20 @@ tvShowRouter.get('/all', (req, res, next) => {
         });
 });
 
+//GET GENRE BY NAME
+
+tvShowRouter.get('/name/:name', (req, res, next)=>{
+    const {name} = req.params
+    GenreServices.readName(name)
+        .then(data =>{
+            res.json({
+                "data": data
+            });
+        })
+        .catch(err =>{
+            next(err)
+        })
+})
+
 
 module.exports = tvShowRouter
