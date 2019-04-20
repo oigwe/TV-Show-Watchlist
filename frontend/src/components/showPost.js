@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 
@@ -68,11 +69,12 @@ class ShowPost extends React.Component {
     render() {
         console.log("Monkey", this.state)
         return (
-            <div className='conatiner'>
+            <div className='container-fluid'>
                 <UserWelcome currentUser={this.state.currentUser} />
                 <div className="row">
                     <div className="col">
                         <h2 style={{ textAlign: "center" }}>Add A New Show To Watch</h2>
+                        <h6 style={{ textAlign: "center" }}>Not {this.state.currentUser.username}? Login <Link to='/users'>Here</Link></h6>
                         {
                             this.state.submitted === true ? <h5 style={{backgroundColor:'#4ca746' }}>{this.state.titleValue} Has Been Added To Your Watchlist</h5>: null
                         }
@@ -98,7 +100,7 @@ class ShowPost extends React.Component {
 
                                         </Input>
                                     </FormGroup>
-                                    <Button onClick={this.handleSubmit}>Submit</Button>
+                                    <Button onClick={this.handleSubmit}>Add to Watchlist</Button>
                                 </Form>
                             </div>
                         </div>

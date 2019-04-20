@@ -15,6 +15,7 @@ import Header from './components/header'
   import AddPost from './components/showPost';
   //SPECIFIC SHOW
   //MASTER SHOWS LIST
+  import Shows from './containers/shows';
 
 
 class App extends Component {
@@ -27,7 +28,7 @@ class App extends Component {
             <Route path='/user/post'  component={AddPost}/>
             <Route path='/user/:id' exact component={UserProfile} />
             <Route path='/users' exact component={Users}/>
-            <Route path='/shows' exact />
+            <Route path='/shows' exact component={Shows} />
             <Route path='/show/:id' />
             <Route path='/genres' />
           </Switch>
