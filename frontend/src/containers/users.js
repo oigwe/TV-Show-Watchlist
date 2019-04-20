@@ -41,7 +41,6 @@ class User extends React.Component {
                 .then(() => {
                     readAllUsers()
                         .then((response) => {
-                            localStorage.setItem("currentUser", JSON.toStringify(response.data.dat))
                             this.setState({ users: response.data.data })
                         })
                 })
@@ -66,6 +65,7 @@ class User extends React.Component {
         let index = parseInt(e.target.id)
         readIndividual(index)
             .then((response) => {
+                localStorage.setItem("currentUser", JSON.stringify(response.data.data))
                 this.setState({ currentUser: response.data.data })
             })
     }
