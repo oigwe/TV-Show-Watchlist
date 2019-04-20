@@ -17,7 +17,7 @@ Shows.readShowsGenre = (genreid) => {
 
 // READ SHOWS FOR SPECIFIC USER
 Shows.readShowsUser = (userid) => {
-    const sql = `SELECT shows.*, users.* FROM shows JOIN users ON users.id = shows.user_id WHERE shows.user_id=$[userid]`;
+    const sql = `SELECT genres.*, users.*, shows.img_url, shows.title, shows.genre_id, shows.id  FROM shows JOIN users ON users.id = shows.user_id JOIN genres ON shows.genre_id = genres.id WHERE shows.user_id=$[userid]`;
     return db.any(sql, {userid})
 }
 

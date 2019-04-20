@@ -11,7 +11,7 @@ Users.readAll = () => {
 
 // READ INDIVIDUAL USER
 Users.readIndividual = (id) => {
-    const sql = `SELECT * FROM users WHERE id=$[id]`;
+    const sql = `SELECT * FROM users WHERE users.id=$[id]`;
     return db.one(sql, {id})
 }
 
