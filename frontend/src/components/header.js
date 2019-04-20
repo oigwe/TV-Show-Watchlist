@@ -6,7 +6,7 @@ const Header = (props) => {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="col-8">
 
-  <Link className="navbar-brand" href="/">TV SHOW WATCHLIST</Link>
+  <Link className="navbar-brand" to="/">TV SHOW WATCHLIST</Link>
   </div>
   <div className="col-4">
   <div className="collapse navbar-collapse" id="navbarSupportedContent">

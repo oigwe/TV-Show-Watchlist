@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import {HashRouter, Switch, Route} from 'react-router-dom';
 
+//COMPONENTS
+import Header from './components/header'
+
 //PAGE
   //HOME
   import Home from './containers/home';
   //MASTER USER LIST
+  import Users from './containers/users';
   //USER PROFILE PAGE
+  import UserProfile from './containers/userProfile';
   //USER ADD SHOW
+  import AddPost from './components/showPost';
   //SPECIFIC SHOW
   //MASTER SHOWS LIST
 
@@ -15,15 +21,15 @@ class App extends Component {
   render() {
     return (
         <HashRouter>
+          <Header/>
           <Switch>
-            <Route path='/' component={Home}/>
-            <Route path='/users' exact/>
-            <Route path='/users:id' />
-            <Route path='/user/post'/>
+            <Route path='/' exact component={Home}/>
+            <Route path='/user/post'  component={AddPost}/>
+            <Route path='/user/:id' exact component={UserProfile} />
+            <Route path='/users' exact component={Users}/>
             <Route path='/shows' exact />
             <Route path='/show/:id' />
             <Route path='/genres' />
-
           </Switch>
         </HashRouter>
     );
@@ -31,3 +37,5 @@ class App extends Component {
 }
 
 export default App;
+
+

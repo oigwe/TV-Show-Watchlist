@@ -4,7 +4,6 @@ import React from 'react';
 import {readAllShows} from '../services/main'
 
 //COMPONENTS
-import Header from '../components/header';
 import Carousel from '../components/carousel';
 
 
@@ -28,15 +27,14 @@ class Home extends React.Component {
     render() {
         return (<>
             <div className="container-fluid">
-                <Header />
                 <div className="row">
                     <div className="col" style={{ margin: "auto auto" }}>
-                        <div class="jumbotron">
-                            <h1 class="display-4">Welcome To The TV Watchlist!</h1>
+                        <div className="jumbotron">
+                            <h1 className="display-4">Welcome To The TV Watchlist!</h1>
                         </div>
                     </div>
                 </div>
-                <div className="d-flex flex-row">
+                <div className="d-flex flex-row" style={{overflow:"scroll"}}>
                 {
                     this.state.tvShow.map((e,i)=>{
                         return <Carousel photos={e.img_url} index={i} key={i}/>
