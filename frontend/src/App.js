@@ -14,6 +14,7 @@ import Header from './components/header'
   //USER ADD SHOW
   import AddPost from './components/showPost';
   //SPECIFIC SHOW
+  import ShowProfile from './containers/showProfile';
   //MASTER SHOWS LIST
   import Shows from './containers/shows';
 
@@ -29,7 +30,7 @@ class App extends Component {
             <Route path='/user/:id' exact component={UserProfile} />
             <Route path='/users' exact component={Users}/>
             <Route path='/shows' exact component={Shows} />
-            <Route path='/show/:id' />
+            <Route path='/show/:id' exact component={ShowProfile}/>
             <Route path='/genres' />
           </Switch>
         </HashRouter>
