@@ -46,10 +46,18 @@ const readIndividualUserShows = (id) => {
     })
 }
 
+const readGenres = () => {
+    return axios ({
+        method: "get",
+        url: `http://localhost:${port}/genres/all`
+    })
+}
+
 export {
     readAllShows,
     readAllUsers,
     readIndividual,
     createUser,
     readIndividualUserShows,
+    readGenres
 }
