@@ -1,48 +1,49 @@
 import React from 'react';
 
 //FUNCTIONS
-import {readAllShows} from '../services/main'
+import { readAllShows } from '../services/main'
 
 //COMPONENTS
-
+import WatchList from '../components/isWatchingList';
 
 
 class Shows extends React.Component {
     constructor(props) {
         super(props)
-            this.state = {
-                tvShow: [],
-                filteredTV: []
-            }
+        this.state = {
+            tvShow: [],
+        }
 
     }
 
-    getUnique = (arr, comp) =>{
+    getUnique = (arr, comp) => {
         const newArr = []
-        arr.map((e,i) =>{ 
-            console.log(e) 
-             return e[comp]})
-
-        .map((e, i, arrOfTitles)=> {
-            console.log(e, i, arrOfTitles)
-            return arrOfTitles.indexOf(e) === i })
-
-        .filter((e, i) => {
-            if(e === true){
-                newArr.push(arr[i])
-                console.log(newArr)
-            }
-            return newArr
+        arr.map((e, i) => {
+            console.log(e)
+            return e[comp]
         })
+
+            .map((e, i, arrOfTitles) => {
+                console.log(e, i, arrOfTitles)
+                return arrOfTitles.indexOf(e) === i
+            })
+
+            .filter((e, i) => {
+                if (e === true) {
+                    newArr.push(arr[i])
+                    console.log(newArr)
+                }
                 return newArr
+            })
+        return newArr
     }
 
     componentDidMount() {
         readAllShows()
-            .then((response)=>{
-                this.setState({tvShow: response.data.data})
+            .then((response) => {
+                this.setState({ tvShow: response.data.data })
             })
-        
+
     }
 
 
@@ -52,23 +53,19 @@ class Shows extends React.Component {
                 <div className="row">
                     <div className="col" style={{ margin: "auto auto" }}>
                         <div className="jumbotron">
-                            <h1 className="display-4">Our User Are Watching ...</h1>
+                            <h1 className="display-4">Our Users Are Watching ...</h1>
                         </div>
                     </div>
                 </div>
-                <div className="d-flex flex-row" style={{overflow:"scroll"}}>
-                {
+                <div className="d-flex flex-row" style={{ overflow: "scroll" }}>
+                    {
 
-                    this.state.tvShow.length > 0 ? this.getUnique(this.state.tvShow, 'title').map((e,i)=>{
-
-                        return <>
-                        <img src={e.img_url} style={{height: '200px'}} alt={e.title}/>
-                        </>
-
-                    }) : null
-                }
+                        this.state.tvShow.length > 0? <> 
+                        <WatchList master={this.getUnique(this.state.tvShow, 'title')} watching={this.state.tvShow}/>
+                        </>: null
+                    }
                 </div>
-                </div>
+            </div>
         </>
         )
     }

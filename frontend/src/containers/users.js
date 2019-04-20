@@ -50,7 +50,9 @@ class User extends React.Component {
     componentDidMount = () => {
         readAllUsers()
             .then((response) => {
-                this.setState({ users: response.data.data })
+                this.setState({ 
+                    currentUser: JSON.parse(localStorage.getItem('currentUser')),
+                    users: response.data.data })
             })
     }
 
@@ -91,7 +93,7 @@ class User extends React.Component {
                     </div>
                     <div className='col-6 mt-5'>
                         <h3>Master List Of All Users</h3>
-                        <h6>Select Your Username</h6>
+                        <h6>Select Your Username To Login</h6>
                         <div id='containerList col-6'><UserList state={this.state} handleUserClick={this.handleUserClick} /> </div>
                     </div>
                 </div>

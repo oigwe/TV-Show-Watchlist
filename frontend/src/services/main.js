@@ -73,6 +73,13 @@ const readGenreByName = (name) => {
     })
 }
 
+const readUsersForShow = (name) => {
+    return axios ({
+        method: 'get',
+        url: `http://localhost:${port}/shows/${name}/users`
+    })
+}
+
 export {
     readAllShows,
     readAllUsers,
@@ -82,4 +89,5 @@ export {
     readGenres,
     createShow,
     readGenreByName,
+    readUsersForShow
 }
