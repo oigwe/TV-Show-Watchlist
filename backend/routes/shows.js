@@ -46,7 +46,7 @@ tvShowRouter.get('/user/:userid', (req, res, next) => {
         });
 });
 
-//GET SPECIFIC ShOW
+//GET SPECIFIC SHOW
 
 tvShowRouter.get('/:showid', (req, res, next) => {
     const {showid} = req.params
@@ -60,6 +60,22 @@ tvShowRouter.get('/:showid', (req, res, next) => {
             next(err)
         });
 });
+
+//GET USERS FOR SPECIFIC SHOW
+
+tvShowRouter.get('/:title/users', (req, res, next) => {
+    const {title} = req.params
+    ShowServices.readAllUsers(title)
+        .then(data => {
+            res.json({
+                "data": data
+            });
+        })
+        .catch(err =>{
+            next(err)
+        });
+});
+
 
 
 //POST SPECIFIC ShOW

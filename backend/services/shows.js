@@ -27,6 +27,12 @@ Shows.readShow = (showid) => {
     return db.any(sql, {showid})
 }
 
+// READ ALL USERS FOR SHOW
+Shows.readAllUsers = (title) => {
+    const sql = `SELECT shows.*, users.* FROM shows JOIN users ON users.id = shows.user_id WHERE shows.title=$[title]`;
+    return db.any(sql, {title})
+}
+
 //POST SHOW
 Shows.createShow = (title, img_url, user_id, genre_id) =>{
     const sql = `INSERT INTO shows (title, img_url, user_id, genre_id) VALUES ($[title], $[img_url], $[user_id], $[genre_id]) RETURNING id`;
