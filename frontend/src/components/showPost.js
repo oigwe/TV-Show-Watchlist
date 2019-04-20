@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 
 //FUNCTIONS
-import { readGenres } from '../services/main'
+import { readGenres, readGenreByName, createShow } from '../services/main'
 
 //COMPONENTS
 import UserWelcome from '../components/userWelcome';
@@ -18,7 +18,8 @@ class ShowPost extends React.Component {
             imgValue: '',
             genreInput: '',
             currentUser: [],
-            genres: []
+            genres: [],
+            submitted: false,
         }
     }
 
@@ -38,10 +39,25 @@ class ShowPost extends React.Component {
         this.setState({ titleValue: e.target.value })
     }
 
-    handleSubmit = () => {
-        if (!this.state.inputValue) { return }
-        else {
+    handleSelectChange = (e) =>{
+        this.setState({genreInput: e.target.value})
+    }
 
+    handleImageValue = (e) =>{
+        this.setState({ imgValue: e.target.value })
+    }
+
+    handleSubmit = () => {
+        if (!this.state.titleValue) { return alert("Please Include A Show Title") }
+        if (!this.state.imgValue) { return alert("Please Include An Image URL")}
+        if(!this.state.genreInput) {return alert("Please Select A Genre")}
+        else {
+            readGenreByName(this.state.genreInput)
+            .then((response) =>{
+                console.log("Genres Id", response)
+                createShow(this.state.titleValue, this.state.imgValue, this.state.currentUser.id, response.data.data.id)
+                .then(()=> this.setState({submitted: true}))
+            })
         }
 
 
@@ -57,29 +73,30 @@ class ShowPost extends React.Component {
                 <div className="row">
                     <div className="col">
                         <h2 style={{ textAlign: "center" }}>Add A New Show To Watch</h2>
+                        {
+                            this.state.submitted === true ? <h5 style={{backgroundColor:'#4ca746' }}>{this.state.titleValue} Has Been Added To Your Watchlist</h5>: null
+                        }
                         <div className="container">
                                 <Form>
                                     <FormGroup>
-                                        <Label for="exampleEmail">Title</Label>
-                                        <Input type="email" name="title" id="exampleEmail" placeholder="Title Text Input" />
+                                        <Label for="exampleTitle">Title</Label>
+                                        <Input type="text" name="title" id="exampleTitle" placeholder="Title Text Input" onChange={this.handleTitleInputValue} required/>
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label for="exampleImage">Show Poster URL</Label>
+                                        <Input type="text" name="title" id="exampleImage" placeholder="URL Link For Show Image" onChange={this.handleImageValue} required/>
                                     </FormGroup>
                                     <FormGroup>
                                         <Label for="exampleSelect">Genre</Label>
-                                        <Input type="select" name="select" id="exampleSelect">
+                                        <Input type="select" name="select" id="exampleSelect" onChange={this.handleSelectChange}>
+                                            <option value="" selected disabled>Please Select A Genre</option>
                                             {
                                                 this.state.genres.map((e, i) => {
-                                                    return <option>{e.genre_name}</option>
+                                                    return <option key={i} data-id ={e.id} >{e.genre_name}</option>
                                                 })
                                             }
 
                                         </Input>
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label for="exampleFile">Image</Label>
-                                        <Input type="file" name="file" id="exampleFile" />
-                                        <FormText color="muted">
-                                            Upload the show poster for your new show
-                                        </FormText>
                                     </FormGroup>
                                     <Button onClick={this.handleSubmit}>Submit</Button>
                                 </Form>

@@ -53,11 +53,33 @@ const readGenres = () => {
     })
 }
 
+const createShow = (title, img_url, user_id, genre_id) =>{
+    return axios ({
+        method: 'post',
+        url: `http://localhost:${port}/shows/create`,
+        data: {
+            title: title,
+            img_url: img_url,
+            user_id: user_id,
+            genre_id: genre_id
+        }
+    })
+}
+
+const readGenreByName = (name) => {
+    return axios ({
+        method: 'get',
+        url: `http://localhost:${port}/genres/name/${name}`
+    })
+}
+
 export {
     readAllShows,
     readAllUsers,
     readIndividual,
     createUser,
     readIndividualUserShows,
-    readGenres
+    readGenres,
+    createShow,
+    readGenreByName,
 }
