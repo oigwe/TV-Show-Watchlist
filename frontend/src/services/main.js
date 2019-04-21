@@ -94,6 +94,13 @@ const readShow = (id) => {
     })
 }
 
+const readComments = (id) =>{
+    return axios ({
+        method: 'get',
+        url: `http://localhost:${port}/comments/${id}`
+    })
+}
+
 export {
     readAllShows,
     readAllUsers,
@@ -105,5 +112,6 @@ export {
     readGenreByName,
     readUsersForShow,
     readShow,
-    readUsersForShowID
+    readUsersForShowID,
+    readComments
 }

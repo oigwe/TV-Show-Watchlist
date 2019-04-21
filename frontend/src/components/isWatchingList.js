@@ -11,12 +11,12 @@ const WatchList = (props) => {
             {
                 props.tv ? props.tv.map((e, i) => {
                     return <>
-                        <div className="my-5" key={i} style={{ display: 'inline-flex', flexWrap: 'wrap', width: '50%', alignSelf: 'center' }}>
+                        <div className="my-5" key={i} style={{ display: "inline-flex", flexWrap: "wrap",  alignSelf: "center"}}>
                             <div className="col">
-                                <Link to={'/show/' + e.id}><img src={e.img_url} alt={e.title} style={{ height: '200px' }} /></Link>
+                                <Link to={'/show/' + e.id}><img src={e.img_url} alt={e.title} /></Link>
                             </div>
                             <div className="col">
-                                <Link to={'/show/' + e.id}> <h4>{e.title}</h4></Link>
+                                <Link to={'/show/' + e.id} style={{color: 'white' }}> {e.title}</Link>
                                 <h5>{e.genre_name}</h5>
                             </div>
                         </div>

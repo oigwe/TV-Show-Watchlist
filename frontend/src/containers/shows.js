@@ -49,15 +49,15 @@ class Shows extends React.Component {
 
     render() {
         return (<>
-            <div className="container-fluid">
+            <div className="container-fluid" style={{ backgroundColor: "black" }} >
                 <div className="row">
                     <div className="col" style={{ margin: "auto auto" }}>
-                        <div className="jumbotron">
+                        <div className="jumbotron" style={{backgroundColor: "black", color: "white"}}>
                             <h1 className="display-4">Our Users Are Watching ...</h1>
                         </div>
                     </div>
                 </div>
-                <div className="d-flex flex-row" style={{ overflow: "scroll" }}>
+                <div className="d-flex flex-row" style={{overflow: 'scroll', height: '500px'}}>
                     {
 
                         this.state.tvShow.length > 0? <> 

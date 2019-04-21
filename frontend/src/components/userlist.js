@@ -10,13 +10,13 @@ const Userlist = props => {
     else {
         return (
             <>
-                <div className='container col-7 left'>
+                <div className='col-9'>
                     <ul className="list-group">
                     {props.state.users.map((e, i) => {
                             return (
-                                <div className="user row justify-content-between p-3" key={i} id='list' >
-                                    <span className='col-7' onClick={props.handleUserClick} id={e.id} style={props.state.currentUser.id === e.id ?{backgroundColor: "yellow"}: {backgroundColor: "transparent"}} >{e.username}</span>
-                                    <Link to={'/user/'+e.id}> <button>User Profile</button></Link>
+                                <div className="row justify-content-between p-3" key={i} >
+                                    <span className='col-7' onClick={props.handleUserClick} id={e.id} style={props.state.currentUser.id === e.id ?{backgroundColor: "#dc3545", borderRadius: "3px", margin: "auto auto"}: {backgroundColor: "transparent", margin: "auto auto"}} >{e.username}</span>
+                                    <Link to={'/user/'+e.id}> <button type="button" class="btn btn-outline-light">User Profile</button></Link>
                                 </div>
                             )
                         })}
