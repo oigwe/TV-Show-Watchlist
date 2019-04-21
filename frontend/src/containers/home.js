@@ -49,17 +49,17 @@ class Home extends React.Component {
 
     render() {
         return (<>
-            <div className="container-fluid" style={{backgroundColor: 'black'}}>
+            <div className="container-fluid" style={{backgroundColor: "black"}}>
                 <div className="row">
                     <div className="col" style={{ margin: "auto auto" }}>
-                        <div className="jumbotron" style={{backgroundColor: 'black'}}>
-                            <h1 className="display-4" style={{color: 'white', fontWeight:'bold'}}>Welcome To The TV Watchlist!</h1>
+                        <div className="jumbotron" style={{backgroundColor: "black"}}>
+                            <h1 className="display-4" style={{color: "white", fontWeight:"bold"}}>Welcome To The TV Watchlist!</h1>
                         </div>
                     </div>
                 </div>
                 <div className="d-flex flex-row" style={{overflow:"scroll"}}>
                 {
-                    this.getUnique(this.state.tvShow, 'title').map((e,i)=>{
+                    this.getUnique(this.state.tvShow, "title").map((e,i)=>{
                         return <Carousel photos={e.img_url} index={i} key={i}/>
                     })
                 }
