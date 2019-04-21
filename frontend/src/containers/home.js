@@ -57,7 +57,7 @@ class Home extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="d-flex flex-row" style={{overflow:"scroll"}}>
+                <div className="d-flex flex-row" style={{overflow:"scroll", height: "600px"}}>
                 {
                     this.getUnique(this.state.tvShow, "title").map((e,i)=>{
                         return <Carousel photos={e.img_url} index={i} key={i}/>
