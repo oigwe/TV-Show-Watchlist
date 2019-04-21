@@ -1,11 +1,12 @@
 import React from 'react';
 
 //FUNCTIONS
-import {readShow, readUsersForShowID} from '../services/main';
+import {readShow, readUsersForShowID, readComments} from '../services/main';
 
 //COMPONENTS
 import WatchList from '../components/isWatchingList';
 import Watchers from '../components/usersWatching';
+import Comments from '../components/comments';
 
 
 
@@ -16,19 +17,30 @@ class ShowProfile extends React.Component {
             this.state = {
                 tvShow: [],
                 users: [],
-                comments: []
+                comments: [],
+                currentUser: [],
+                commentInput: "",
             }
 
     }
 
     componentDidMount() {
+
         readShow(this.props.match.params.id)
         .then((response)=>{
-            this.setState({tvShow: response.data.data})
+            this.setState({
+                tvShow: response.data.data,
+                currentUser: JSON.parse(localStorage.getItem('currentUser')),
+            })
         })
         readUsersForShowID(this.props.match.params.id)
         .then((response)=>{
             this.setState({users: response.data.data})
+        })
+
+        readComments(this.props.match.params.id)
+        .then((response)=>{
+            this.setState({comments: response.data.data})
         })
   
     }
@@ -44,9 +56,22 @@ class ShowProfile extends React.Component {
                 }
                 {
                     this.state.tvShow.map((e,i)=>{
-                        return   <div className="row my-3">
-                        <h5>Comments: Tell Us How You feel About {e.title} </h5>
+                        return  <> <div className="row my-3">
+                        <h5>Comments: Tell Us How You Feel About {e.title} </h5>
+                        </div>
+                        <div className="row">
+                        <form style={{width: '100%'}}>
+                        <div class="form-group">
+    <label for="exampleFormControlTextarea1">Example textarea</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <button>Post</button>
+</form>
+</div>
+<div className="row">
+                        <Comments/>
                     </div>
+                    </>
                     })
 
                 }
