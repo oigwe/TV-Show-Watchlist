@@ -28,7 +28,7 @@ class UserProfile extends React.Component {
     render() {
         return (
             <>
-            <div className="container">
+            <div className="container-fluid" style={{backgroundColor: "black"}}>
             {
                 this.state.currentUser.length > 0 ? <h2 className="m-5">{this.state.currentUser[0].username} Is Watching ...</h2> : <Spinner/>
 
