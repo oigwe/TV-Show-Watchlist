@@ -101,6 +101,17 @@ const readComments = (id) =>{
     })
 }
 
+const postComment = (comment_body, user_id, showid) =>{
+    return axios ({
+        method: 'post',
+        url: `http://localhost:${port}/comments/post/${showid}`,
+        data: {
+            comment_body: comment_body,
+            user_id: user_id, 
+        }
+    })
+}
+
 export {
     readAllShows,
     readAllUsers,
@@ -113,5 +124,6 @@ export {
     readUsersForShow,
     readShow,
     readUsersForShowID,
-    readComments
+    readComments,
+    postComment,
 }

@@ -1,11 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 //FUNCTIONS
-import {readShow, readUsersForShowID, readComments} from '../services/main';
+import { readShow, readUsersForShowID, readComments, postComment } from '../services/main';
 
 //COMPONENTS
 import WatchList from '../components/isWatchingList';
-import Watchers from '../components/usersWatching';
 import Comments from '../components/comments';
 
 
@@ -14,68 +14,86 @@ import Comments from '../components/comments';
 class ShowProfile extends React.Component {
     constructor(props) {
         super(props)
-            this.state = {
-                tvShow: [],
-                users: [],
-                comments: [],
-                currentUser: [],
-                commentInput: "",
-            }
+        this.state = {
+            tvShow: [],
+            users: [],
+            comments: [],
+            currentUser: [],
+            commentInput: "",
+        }
+
+    }
+
+    handleComment = (e) => {
+        this.setState({commentInput: e.target.value})
+    }
+
+    handleSubmit = (e) =>{
+        e.preventDefault()
+        postComment(this.state.commentInput, this.state.currentUser.id, this.props.match.params.id)
+        .then(()=>{
+            readComments(this.props.match.params.id)
+            .then((response) => {
+                this.setState({ comments: response.data.data })
+            })
+        })
 
     }
 
     componentDidMount() {
 
         readShow(this.props.match.params.id)
-        .then((response)=>{
-            this.setState({
-                tvShow: response.data.data,
-                currentUser: JSON.parse(localStorage.getItem('currentUser')),
+            .then((response) => {
+                this.setState({
+                    tvShow: response.data.data,
+                    currentUser: JSON.parse(localStorage.getItem('currentUser')),
+                })
             })
-        })
         readUsersForShowID(this.props.match.params.id)
-        .then((response)=>{
-            this.setState({users: response.data.data})
-        })
+            .then((response) => {
+                this.setState({ users: response.data.data })
+            })
 
         readComments(this.props.match.params.id)
-        .then((response)=>{
-            this.setState({comments: response.data.data})
-        })
-  
+            .then((response) => {
+                this.setState({ comments: response.data.data })
+            })
+
     }
 
     render() {
-        console.log("meme", this.state)
         return (<>
-            <div className="container">
+            <div className="container p-5" style={{ backgroundColor: "white" }}>
                 {
-                    this.state.tvShow.map((e,i)=>{
-                       return <WatchList profile={this.state.tvShow}/>
+                    this.state.tvShow.map((e, i) => {
+                        return <WatchList profile={this.state.tvShow} key={i} />
                     })
                 }
+            </div>
+            <div className="container mt-3" style={{ backgroundColor: "white" }}>
                 {
-                    this.state.tvShow.map((e,i)=>{
-                        return  <> <div className="row my-3">
-                        <h5>Comments: Tell Us How You Feel About {e.title} </h5>
-                        </div>
-                        <div className="row">
-                        <form style={{width: '100%'}}>
-                        <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-  <button>Post</button>
-</form>
-</div>
-<div className="row">
-                        <Comments/>
-                    </div>
-                    </>
+                    this.state.tvShow.map((e, i) => {
+                        return <div className="row p-5" key={i}>
+                                <div className="col">
+                                    <h3>Thoughts On {e.title} ... </h3>
+                                    <div className="row p-5" style={{overflow: "scroll", height: "75%"}}>
+                                        <Comments comments={this.state.comments} />
+                                    </div>
+                                </div>
+                                <div className="col">
+                                <p>Logged In As {this.state.currentUser.username}. Mistake? Login <Link to='/users' style={{color: "#dc3545"}}>Here</Link></p>
+                                    <form className="mt-5">
+                                        <div className="form-group">
+                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" style={{ width: "100%" }} onChange={this.handleComment}></textarea>
+                                        </div>
+                                        <button type="button" className="btn btn-danger" onClick={this.handleSubmit}>Post</button>
+                                    </form>
+                                </div>
+                            </div>
                     })
 
                 }
-                </div>
+            </div>
         </>
         )
     }

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Spinner} from 'reactstrap'
+import { Spinner } from 'reactstrap'
 
 //FUNCTIONS
-import {readIndividualUserShows} from '../services/main'
+import { readIndividualUserShows } from '../services/main'
 
 //COMPONENTS
 import WatchList from '../components/isWatchingList';
@@ -12,35 +12,37 @@ import WatchList from '../components/isWatchingList';
 class UserProfile extends React.Component {
     constructor(props) {
         super(props)
-            this.state = {
-                currentUser: [],
-            }
+        this.state = {
+            currentUser: [],
+        }
 
     }
 
     componentDidMount() {
         readIndividualUserShows(this.props.match.params.id)
-        .then((response)=>{
-            this.setState({currentUser: response.data.data})
-        })
+            .then((response) => {
+                this.setState({ currentUser: response.data.data })
+            })
     }
 
     render() {
-        return (
-            <>
-            <div className="container-fluid">
-            {
-                this.state.currentUser.length > 0 ? <h2 className="m-5">{this.state.currentUser[0].username} Is Watching ...</h2> : <Spinner/>
+        return (<>
+            <div className="container mt-5">
+                <div className="row" style={{ backgroundColor: "white" }}>
+                    <div className="col p-5">
+                        {
+                            this.state.currentUser.length > 0 ? <h2 className="m-5">{this.state.currentUser[0].username} Is Watching ...</h2> : <Spinner />
+                        }
+                        <div className="row d-flex align-content-start flex-wrap">
+                            {
+                                this.state.currentUser.length > 0 ? <WatchList tv={this.state.currentUser} /> : <Spinner />
 
-            }
-            <div className="row d-flex align-content-start flex-wrap"> 
-            {
-             this.state.currentUser.length > 0 ? <WatchList tv= {this.state.currentUser}/> : <Spinner/>
-
-            }
+                            }
+                        </div>
+                    </div>
+                </ div>
             </div>
-            </div>
-            </>
+        </>
         )
     }
 }
