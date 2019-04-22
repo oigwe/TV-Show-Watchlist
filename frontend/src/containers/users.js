@@ -76,7 +76,7 @@ class User extends React.Component {
     render() {
         return (
             <div className='container-fluid'>
-                <UserWelcome currentUser={this.state.currentUser} />
+                <UserWelcome currentUser={this.state.currentUser} location={this.props.location.pathname} />
                 <div className='row'>
                     <div className='col-2'></div>
                     <div className='col-4'>

@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 const Comments = (props) => {
-    console.log(props)
     return (
         <div className="col">
             {
