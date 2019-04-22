@@ -68,7 +68,7 @@ class ShowPost extends React.Component {
     render() {
         return (
             <div className='container-fluid' style={{ backgroundColor: "black" }}>
-                <UserWelcome currentUser={this.state.currentUser} />
+                <UserWelcome currentUser={this.state.currentUser} location={this.props.location.pathname} />
                 <div className="row">
                     <div className="col">
                         <div className="container p-5" style={{ background: "white" }}>
