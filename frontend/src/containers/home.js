@@ -49,7 +49,7 @@ class Home extends React.Component {
 
     render() {
         return (<>
-            <div className="container-fluid" style={{ backgroundColor: "black" }}>
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col">
                         <div className="jumbotron" style={{ backgroundColor: "black" }}>

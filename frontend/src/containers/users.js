@@ -75,7 +75,7 @@ class User extends React.Component {
 
     render() {
         return (
-            <div className='container-fluid' style={{ backgroundColor: "black" }}>
+            <div className='container-fluid'>
                 <UserWelcome currentUser={this.state.currentUser} />
                 <div className='row'>
                     <div className='col-2'></div>

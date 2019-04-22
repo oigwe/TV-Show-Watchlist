@@ -2,6 +2,10 @@ body > #root > div {
   height: 100%;
 }
 
+body {
+  background-color: black;
+}
+
 li {
   color: #dc3545;
 }

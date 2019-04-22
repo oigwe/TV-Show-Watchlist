@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = (props) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: "black" }}>
+    <nav className="navbar navbar-expand-lg navbar-light">
       <div className="col-9">
 
         <Link className="navbar-brand" to="/" style={{ color: "#dc3545", fontWeight: "bold", fontSize: "30px" }}>TV SHOW WATCHLIST</Link>

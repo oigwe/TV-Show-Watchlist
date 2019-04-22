@@ -18,8 +18,8 @@ const WatchList = (props) => {
                                 <Link to={`/show/${e.id}`}><img src={e.img_url} alt={e.title} style={{ height: "300px" }} /></Link>
                             </div>
                             <div className="col">
-                                <h3><Link to={`/show/${e.id}`} style={{ color: "#dc3545" }}>{e.title}</Link></h3>
-                                <h5>{e.genre_name}</h5>
+                                <h4><Link to={`/show/${e.id}`} style={{ color: "black" }}>{e.title}</Link></h4>
+                                <p style={{ color: "#dc3545" }}>{e.genre_name}</p>
                             </div>
                         </div>
                     </>
@@ -51,14 +51,14 @@ const WatchList = (props) => {
                 //INDIVIDUAL SHOW PAGE
                 props.profile ? props.profile.map((e, i) => {
                     return <>
-                        <div className="row my-5">
+                        <div className="row m-5">
                             <div className="col">
                                 <Link to={`/show/${e.id}`}><img src={e.img_url} alt={e.title} style={{ height: '400px' }} /></Link>
                             </div>
                             <div className="col">
-                                <Link to={`/show/${e.id}`}> <h2 style={{ width: '100%' }}>{e.title}</h2></Link>
-                                <h3>{e.genre_name}</h3>
-                                <h5 className="mt-5">Being Watched By...</h5>
+                                <Link to={`/show/${e.id}`} style={{color: "black"}}> <h2 style={{ width: '100%' }}>{e.title}</h2></Link>
+                                <h6 style={{color: "#dc3545"}}>{e.genre_name}</h6>
+                                <h4 className="mt-5">Being Watched By...</h4>
                                 <Watchers show={props.profile} current={e.title} />
                             </div>
                         </div>

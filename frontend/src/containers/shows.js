@@ -49,7 +49,7 @@ class Shows extends React.Component {
 
     render() {
         return (<>
-            <div className="container-fluid" style={{ backgroundColor: "black" }} >
+            <div className="container-fluid" >
                 <div className="row">
                     <div className="col" style={{ margin: "auto auto" }}>
                         <div className="jumbotron" style={{ color: "white", background: "linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(http://thesmartlocal.com/images/easyblog_articles/6617/b2ap3_large_image12.jpg)", backgroundSize: "50% 100%" }}>
