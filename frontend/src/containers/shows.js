@@ -57,11 +57,11 @@ class Shows extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="d-flex flex-row" style={{overflow: 'scroll', height: '500px'}}>
+                <div className="d-flex flex-row" style={{overflow: "scroll", height: "450px"}}>
                     {
 
                         this.state.tvShow.length > 0? <> 
-                        <WatchList master={this.getUnique(this.state.tvShow, 'title')} watching={this.state.tvShow}/>
+                        <WatchList master={this.getUnique(this.state.tvShow, "title")} watching={this.state.tvShow}/>
                         </>: null
                     }
                 </div>

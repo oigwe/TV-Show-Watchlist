@@ -51,7 +51,7 @@ class ShowProfile extends React.Component {
             <div className="container">
                 {
                     this.state.tvShow.map((e,i)=>{
-                       return <WatchList profile={this.state.tvShow}/>
+                       return <WatchList profile={this.state.tvShow} key={i}/>
                     })
                 }
                 {

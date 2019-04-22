@@ -1,7 +1,7 @@
 import React from 'react';
 
 //FUNCTIONS
-import {readAllShows} from '../services/main'
+import { readAllShows } from '../services/main'
 
 //COMPONENTS
 import Carousel from '../components/carousel';
@@ -11,9 +11,9 @@ import Carousel from '../components/carousel';
 class Home extends React.Component {
     constructor(props) {
         super(props)
-            this.state = {
-                tvShow: [],
-            }
+        this.state = {
+            tvShow: [],
+        }
 
     }
 
@@ -42,29 +42,29 @@ class Home extends React.Component {
 
     componentDidMount() {
         readAllShows()
-            .then((response)=>{
-                this.setState({tvShow: response.data.data})
+            .then((response) => {
+                this.setState({ tvShow: response.data.data })
             })
     }
 
     render() {
         return (<>
-            <div className="container-fluid" style={{backgroundColor: "black"}}>
+            <div className="container-fluid" style={{ backgroundColor: "black" }}>
                 <div className="row">
-                    <div className="col" style={{ margin: "auto auto" }}>
-                        <div className="jumbotron" style={{backgroundColor: "black"}}>
-                            <h1 className="display-4" style={{color: "white", fontWeight:"bold"}}>Welcome To The TV Watchlist!</h1>
+                    <div className="col">
+                        <div className="jumbotron" style={{ backgroundColor: "black" }}>
+                            <h1 className="display-4" style={{ color: "white", fontWeight: "bold" }}>Welcome To The TV Show Watchlist!</h1>
                         </div>
                     </div>
                 </div>
-                <div className="d-flex flex-row" style={{overflow:"scroll", height: "600px"}}>
-                {
-                    this.getUnique(this.state.tvShow, "title").map((e,i)=>{
-                        return <Carousel photos={e.img_url} index={i} key={i}/>
-                    })
-                }
+                <div className="d-flex flex-row" style={{ overflow: "scroll", height: "600px" }}>
+                    {
+                        this.getUnique(this.state.tvShow, "title").map((e, i) => {
+                            return <Carousel photos={e.img_url} index={i} key={i} />
+                        })
+                    }
                 </div>
-                </div>
+            </div>
         </>
         )
     }
