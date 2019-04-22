@@ -77,7 +77,9 @@ class ShowProfile extends React.Component {
                                 <div className="col">
                                     <h3>Thoughts On {e.title} ... </h3>
                                     <div className="row p-5" style={{overflow: "scroll", height: "75%"}}>
-                                        <Comments comments={this.state.comments} />
+                                       {
+                                           this.state.comments.length === 0 ? <p>Be The First To Comment On {e.title}</p> : <Comments comments={this.state.comments} />
+                                       }
                                     </div>
                                 </div>
                                 <div className="col">
