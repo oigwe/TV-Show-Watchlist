@@ -17,7 +17,7 @@ tvShowRouter.get('/:showid', (req, res, next) => {
         });
 });
 
-//POSTCOMMENTS FOR SPECIFIC SHOW
+//POST COMMENTS FOR SPECIFIC SHOW
 
 tvShowRouter.post('/post/:showid', (req, res, next) => {
     const {showid} = req.params

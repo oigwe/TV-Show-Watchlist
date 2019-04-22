@@ -23,14 +23,20 @@ Shows.readShowsUser = (userid) => {
 
 // READ SPECIFIC SHOW
 Shows.readShow = (showid) => {
-    const sql = `SELECT * FROM shows WHERE id=$[showid]`;
+    const sql = `SELECT shows.*, genres.* FROM shows JOIN genres ON shows.genre_id=genres.id WHERE shows.id=$[showid]`;
     return db.any(sql, {showid})
 }
 
-// READ ALL USERS FOR SHOW
-Shows.readAllUsers = (title) => {
+// READ ALL USERS FOR SHOW BY SHOW NAME
+Shows.readAllUsersName = (title) => {
     const sql = `SELECT shows.*, users.* FROM shows JOIN users ON users.id = shows.user_id WHERE shows.title=$[title]`;
     return db.any(sql, {title})
+}
+
+// READ ALL USERS FOR SHOW BY SHOW iD
+Shows.readAllUsersID = (id) => {
+    const sql = `SELECT shows.*, users.* FROM shows JOIN users ON users.id = shows.user_id WHERE shows.id=$[id]`;
+    return db.any(sql, {id})
 }
 
 //POST SHOW
