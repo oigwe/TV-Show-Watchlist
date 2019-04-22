@@ -52,12 +52,12 @@ class Shows extends React.Component {
             <div className="container-fluid" style={{ backgroundColor: "black" }} >
                 <div className="row">
                     <div className="col" style={{ margin: "auto auto" }}>
-                        <div className="jumbotron" style={{backgroundColor: "black", color: "white"}}>
-                            <h1 className="display-4">Our Users Are Watching ...</h1>
+                        <div className="jumbotron" style={{color: "white", background:"linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(http://thesmartlocal.com/images/easyblog_articles/6617/b2ap3_large_image12.jpg)", backgroundSize:"50% 100%"}}>
+                            <h1 className="display-4">What Are People Watching...</h1>
                         </div>
                     </div>
                 </div>
-                <div className="d-flex flex-row" style={{overflow: "scroll", height: "450px"}}>
+                <div className="container d-flex flex-row" style={{overflow: "scroll", height: "450px", backgroundColor: "white"}}>
                     {
 
                         this.state.tvShow.length > 0? <> 

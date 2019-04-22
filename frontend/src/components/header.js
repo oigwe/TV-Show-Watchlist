@@ -12,7 +12,7 @@ const Header = (props) => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent" >
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <Link className="nav-link" to="/"  style={{ color: "white" }}>Home</Link>
+              <Link className="nav-link" to="/" style={{ color: "white" }}>Home</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/users" style={{ color: "white" }}>Users</Link>

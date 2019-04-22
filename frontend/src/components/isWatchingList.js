@@ -9,16 +9,16 @@ const WatchList = (props) => {
     console.log("props", props)
     return (
         <div className="col" >
-            { 
+            {
                 //USER PROFILE
                 props.tv ? props.tv.map((e, i) => {
                     return <>
-                        <div className="my-5" key={i} style={{ display: "inline-flex", flexWrap: "wrap",  alignSelf: "center", width: '50%'}}>
+                        <div className="my-5" key={i} style={{ display: "inline-flex", flexWrap: "wrap", alignSelf: "center", width: '50%' }}>
                             <div className="col">
-                                <Link to={`/show/${e.id}`}><img src={e.img_url} alt={e.title} style={{height: "300px"}}/></Link>
+                                <Link to={`/show/${e.id}`}><img src={e.img_url} alt={e.title} style={{ height: "300px" }} /></Link>
                             </div>
                             <div className="col">
-                                <h3><Link to={`/show/${e.id}`} style={{color: "#dc3545"}}>{e.title}</Link></h3>
+                                <h3><Link to={`/show/${e.id}`} style={{ color: "#dc3545" }}>{e.title}</Link></h3>
                                 <h5>{e.genre_name}</h5>
                             </div>
                         </div>
@@ -31,14 +31,16 @@ const WatchList = (props) => {
                     return <>
                         <div className="my-5" key={i} style={{ display: "inline-flex", flexWrap: "wrap", width: "50%", alignSelf: "center", backgroundColor: "white" }}>
                             <div className="col">
-                                <Link to={`/show/${e.id}`}><img src={e.img_url} alt={e.title} style={{ height: '300px' }} /></Link>
+                                <Link to={`/show/${e.id}`}><img src={e.img_url} alt={e.title} style={{ height: '350px' }} /></Link>
                             </div>
                             <div className="col">
-                                <Link to={`/show/${e.id}`}> <h2>{e.title}</h2></Link>
-                                <h5>{e.genre_name}</h5>
-                                <h6 className="my-3" style={{ fontWeight: 'bold', color: 'navy' }}>Who's Watching?</h6>
-                                <div style={{ overflow: "scroll", height: '50%' }}>
-                                    <Watchers show={props.master} current={e.title} />
+                                <Link to={`/show/${e.id}`} style={{ color: "black" }}> <h2>{e.title}</h2></Link>
+                                <p style={{ color: "#dc3545" }}>{e.genre_name}</p>
+                                <h6 className="mt-5" style={{ color: "black" }}>Who's Watching?</h6>
+                                <div className="mt-2" style={{ overflow: "scroll", height: '50%' }}>
+                                    <ul>
+                                        <Watchers show={props.master} current={e.title} />
+                                    </ul>
                                 </div>
                             </div>
                         </div>
