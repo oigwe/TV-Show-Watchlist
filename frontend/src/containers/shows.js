@@ -52,7 +52,7 @@ class Shows extends React.Component {
             <div className="container-fluid" >
                 <div className="row">
                     <div className="col" style={{ margin: "auto auto" }}>
-                        <div className="jumbotron" style={{ color: "white", background: "linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(http://thesmartlocal.com/images/easyblog_articles/6617/b2ap3_large_image12.jpg)", backgroundSize: "50% 100%" }}>
+                        <div className="jumbotron" style={{ color: "white", background: "linear-gradient(0deg,rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(http://thesmartlocal.com/images/easyblog_articles/6617/b2ap3_large_image12.jpg)", backgroundRepeat: "repeat round" }}>
                             <h1 className="display-4">What Are People Watching...</h1>
                         </div>
                     </div>

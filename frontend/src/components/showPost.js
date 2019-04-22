@@ -66,7 +66,6 @@ class ShowPost extends React.Component {
 
 
     render() {
-        console.log("SP", this.props)
         return (
             <div className='container-fluid' style={{ backgroundColor: "black" }}>
                 <UserWelcome currentUser={this.state.currentUser} location={this.props.location.pathname} />
