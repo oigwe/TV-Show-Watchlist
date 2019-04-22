@@ -61,11 +61,26 @@ tvShowRouter.get('/:showid', (req, res, next) => {
         });
 });
 
-//GET USERS FOR SPECIFIC SHOW
+//GET USERS FOR SPECIFIC SHOW BY NAME
 
 tvShowRouter.get('/:title/users', (req, res, next) => {
     const {title} = req.params
-    ShowServices.readAllUsers(title)
+    ShowServices.readAllUsersName(title)
+        .then(data => {
+            res.json({
+                "data": data
+            });
+        })
+        .catch(err =>{
+            next(err)
+        });
+});
+
+//GET USERS FOR SPECIFIC SHOW BY ID
+
+tvShowRouter.get('/:id/user', (req, res, next) => {
+    const {id} = req.params
+    ShowServices.readAllUsersID(id)
         .then(data => {
             res.json({
                 "data": data
