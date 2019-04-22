@@ -16,7 +16,7 @@ const Userlist = props => {
                             return (
                                 <div className="row justify-content-between p-3" key={i} >
                                     <span className='col-7' onClick={props.handleUserClick} id={e.id} style={props.state.currentUser.id === e.id ? { backgroundColor: "#dc3545", borderRadius: "3px", margin: "auto auto" } : { backgroundColor: "transparent", margin: "auto auto" }} >{e.username}</span>
-                                    <Link to={'/user/' + e.id}> <button type="button" class="btn btn-outline-light">User Profile</button></Link>
+                                    <Link to={'/user/' + e.id}> <button type="button" className="btn btn-outline-light">User Profile</button></Link>
                                 </div>
                             )
                         })}

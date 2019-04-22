@@ -6,7 +6,6 @@ import { readShow, readUsersForShowID, readComments, postComment } from '../serv
 
 //COMPONENTS
 import WatchList from '../components/isWatchingList';
-import Watchers from '../components/usersWatching';
 import Comments from '../components/comments';
 
 
@@ -63,7 +62,6 @@ class ShowProfile extends React.Component {
     }
 
     render() {
-        console.log("st", this.state)
         return (<>
             <div className="container p-5" style={{ backgroundColor: "white" }}>
                 {
@@ -75,8 +73,7 @@ class ShowProfile extends React.Component {
             <div className="container mt-3" style={{ backgroundColor: "white" }}>
                 {
                     this.state.tvShow.map((e, i) => {
-                        return <>
-                            <div className="row p-5">
+                        return <div className="row p-5" key={i}>
                                 <div className="col">
                                     <h3>Thoughts On {e.title} ... </h3>
                                     <div className="row p-5" style={{overflow: "scroll", height: "75%"}}>
@@ -89,12 +86,10 @@ class ShowProfile extends React.Component {
                                         <div className="form-group">
                                             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" style={{ width: "100%" }} onChange={this.handleComment}></textarea>
                                         </div>
-                                        <button type="button" class="btn btn-danger" onClick={this.handleSubmit}>Post</button>
+                                        <button type="button" className="btn btn-danger" onClick={this.handleSubmit}>Post</button>
                                     </form>
                                 </div>
                             </div>
-
-                        </>
                     })
 
                 }

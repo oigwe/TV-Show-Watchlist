@@ -28,7 +28,7 @@ class Watchers extends React.Component {
             <div>
                 {
                     this.state.watching.map((e, i) => {
-                        return <li><Link to={`/user/${e.id}`} style={{ color: "black" }}>{e.username}</Link></li>
+                        return <li key={i}><Link to={`/user/${e.id}`} style={{ color: "black" }}>{e.username}</Link></li>
                     })
                 }
             </div>

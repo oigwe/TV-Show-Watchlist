@@ -55,7 +55,6 @@ class ShowPost extends React.Component {
         else {
             readGenreByName(this.state.genreInput)
                 .then((response) => {
-                    console.log("Genres Id", response)
                     createShow(this.state.titleValue, this.state.imgValue, this.state.currentUser.id, response.data.data.id)
                         .then(() => this.setState({ submitted: true }))
                 })
@@ -67,7 +66,6 @@ class ShowPost extends React.Component {
 
 
     render() {
-        console.log("Monkey", this.state)
         return (
             <div className='container-fluid' style={{ backgroundColor: "black" }}>
                 <UserWelcome currentUser={this.state.currentUser} />

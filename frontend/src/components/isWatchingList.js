@@ -6,14 +6,12 @@ import { Link } from 'react-router-dom';
 import Watchers from '../components/usersWatching';
 
 const WatchList = (props) => {
-    console.log("props", props)
     return (
         <div className="col" >
             {
                 //USER PROFILE
                 props.tv ? props.tv.map((e, i) => {
-                    return <>
-                        <div className="my-5" key={i} style={{ display: "inline-flex", flexWrap: "wrap", alignSelf: "center", width: '50%' }}>
+                    return <div className="my-5" key={i} style={{ display: "inline-flex", flexWrap: "wrap", alignSelf: "center", width: '50%' }}>
                             <div className="col">
                                 <Link to={`/show/${e.id}`}><img src={e.img_url} alt={e.title} style={{ height: "300px" }} /></Link>
                             </div>
@@ -22,14 +20,12 @@ const WatchList = (props) => {
                                 <p style={{ color: "#dc3545" }}>{e.genre_name}</p>
                             </div>
                         </div>
-                    </>
                 }) : null
             }
             {
                 //MASTER LIST
                 props.master ? props.master.map((e, i) => {
-                    return <>
-                        <div className="my-5" key={i} style={{ display: "inline-flex", flexWrap: "wrap", width: "50%", alignSelf: "center", backgroundColor: "white" }}>
+                    return <div className="my-5" key={i} style={{ display: "inline-flex", flexWrap: "wrap", width: "50%", alignSelf: "center", backgroundColor: "white" }}>
                             <div className="col">
                                 <Link to={`/show/${e.id}`}><img src={e.img_url} alt={e.title} style={{ height: '350px' }} /></Link>
                             </div>
@@ -44,14 +40,12 @@ const WatchList = (props) => {
                                 </div>
                             </div>
                         </div>
-                    </>
                 }) : null
             }
             {
                 //INDIVIDUAL SHOW PAGE
                 props.profile ? props.profile.map((e, i) => {
-                    return <>
-                        <div className="row m-5">
+                    return <div className="row m-5" key={i}>
                             <div className="col">
                                 <Link to={`/show/${e.id}`}><img src={e.img_url} alt={e.title} style={{ height: '400px' }} /></Link>
                             </div>
@@ -62,7 +56,6 @@ const WatchList = (props) => {
                                 <Watchers show={props.profile} current={e.title} />
                             </div>
                         </div>
-                    </>
                 }) : null
             }
         </div>
