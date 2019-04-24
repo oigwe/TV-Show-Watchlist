@@ -31,7 +31,6 @@ class ShowProfileUser extends React.Component {
 
     handleSubmit = (e) => {
         const title = this.props.location.pathname.split('/show/')[1].split('/user')[0];
-        const uId = this.props.match.params.id
         e.preventDefault()
         postComment(this.state.commentInput, this.state.currentUser.id, this.state.tvShow[0].sid )
             .then(() => {
@@ -62,7 +61,6 @@ class ShowProfileUser extends React.Component {
     }
 
     render() {
-        console.log("Staty", this.state.comments)
         return (<>
             <div className="container p-5" style={{ backgroundColor: "white" }}>
                 {

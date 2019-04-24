@@ -6,18 +6,7 @@ import { Link } from 'react-router-dom';
 import Watchers from '../components/usersWatching';
 
 const WatchList = (props) => {
-    console.log("US", props)
-    const partialUnique = (arr, comp, title) =>{
-            let index = 0;
-            arr.map((e, i) => {
-                return e[comp]
-            })
-                .map((e, i, arrOfTitles) => {
-                    return index = arrOfTitles.indexOf(title)
-                })
-                console.log("Index", index)
-            return index
-        }
+
 
     return (
         <div className="col" >
