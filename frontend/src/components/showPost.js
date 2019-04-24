@@ -89,7 +89,7 @@ class ShowPost extends React.Component {
                                 <FormGroup>
                                     <Label for="exampleSelect">Genre</Label>
                                     <Input type="select" name="select" id="exampleSelect" onChange={this.handleSelectChange}>
-                                        <option value="" selected disabled>Please Select A Genre</option>
+                                        <option value="" defaultValue disabled>Please Select A Genre</option>
                                         {
                                             this.state.genres.map((e, i) => {
                                                 return <option key={i} data-id={e.id} >{e.genre_name}</option>

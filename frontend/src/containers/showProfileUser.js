@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //FUNCTIONS
-import { readShow, readUsersForShowID, readComments, postComment, readAllShows } from '../services/main';
+import { readCommentsByName, postComment, readShowForUser } from '../services/main';
 
 //COMPONENTS
 import WatchList from '../components/isWatchingList';
@@ -11,16 +11,16 @@ import Comments from '../components/comments';
 
 
 
-class ShowProfile extends React.Component {
+class ShowProfileUser extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             tvShow: [],
             users: [],
             comments: [],
-            currentUser: [],
+            currentUser: JSON.parse(localStorage.getItem('currentUser')),
             commentInput: "",
-            masterList: []
+            masterList: [], 
         }
 
     }
@@ -30,35 +30,31 @@ class ShowProfile extends React.Component {
     }
 
     handleSubmit = (e) => {
+        const title = this.props.location.pathname.split('/show/')[1].split('/user')[0];
+        const uId = this.props.match.params.id
         e.preventDefault()
-        postComment(this.state.commentInput, this.state.currentUser.id, this.props.match.params.id)
+        postComment(this.state.commentInput, this.state.currentUser.id, this.state.tvShow[0].sid )
             .then(() => {
-                readComments(this.props.match.params.id)
+                readCommentsByName(title)
                     .then((response) => {
-                        this.setState({ comments: response.data.data, commentInput: '' })
+                        console.log("REp", response.data.data)
+                        this.setState({ comments: response.data.data,
+                        commentInput: '' })
                     })
             })
 
     }
 
+
     componentDidMount() {
-        readAllShows()
-        .then((response)=>{
-            this.setState({masterList: response.data.data})
-        })
-        readShow(this.props.match.params.id)
+        const title = this.props.location.pathname.split('/show/')[1].split('/user')[0];
+        const uId = this.props.match.params.id
+        readShowForUser(title, uId)
             .then((response) => {
-                this.setState({
-                    tvShow: response.data.data,
-                    currentUser: JSON.parse(localStorage.getItem('currentUser')),
-                })
-            })
-        readUsersForShowID(this.props.match.params.id)
-            .then((response) => {
-                this.setState({ users: response.data.data })
+                this.setState({ tvShow: response.data.data })
             })
 
-        readComments(this.props.match.params.id)
+        readCommentsByName(title)
             .then((response) => {
                 this.setState({ comments: response.data.data })
             })
@@ -66,12 +62,12 @@ class ShowProfile extends React.Component {
     }
 
     render() {
-        console.log("State", this.state)
+        console.log("Staty", this.state.comments)
         return (<>
             <div className="container p-5" style={{ backgroundColor: "white" }}>
                 {
                     this.state.tvShow.map((e, i) => {
-                        return <WatchList profile={this.state.tvShow} masterList={this.state.masterList} key={i} />
+                        return <WatchList userShow={this.state.tvShow} current={this.state.currentUser} key={i} />
                     })
                 }
             </div>
@@ -92,7 +88,7 @@ class ShowProfile extends React.Component {
                                 <p>Logged In As {this.state.currentUser.username}. Mistake? Login <Link to='/users' style={{ color: "#dc3545" }}>Here</Link></p>
                                 <form className="mt-5">
                                     <div className="form-group">
-                                        <textarea className="form-control" id="exampleFormControlTextarea1" value={this.state.commentInput} rows="3" style={{ width: "100%" }} onChange={this.handleComment}></textarea>
+                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value={this.state.commentInput} style={{ width: "100%" }} onChange={this.handleComment}></textarea>
                                     </div>
                                     <button type="button" className="btn btn-danger" onClick={this.handleSubmit}>Post</button>
                                 </form>
@@ -107,4 +103,4 @@ class ShowProfile extends React.Component {
     }
 }
 
-export default ShowProfile
+export default ShowProfileUser

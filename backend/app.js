@@ -12,10 +12,9 @@ const showsRouter = require('./routes/shows');
 const commentsRouter = require('./routes/comments');
 
 //MIDDLEWARE
-
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-app.use(cors());
 
 
 //ROUTES
