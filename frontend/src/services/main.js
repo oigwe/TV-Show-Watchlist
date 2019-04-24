@@ -101,6 +101,13 @@ const readComments = (id) =>{
     })
 }
 
+const readCommentsByName = (title) =>{
+    return axios ({
+        method: 'get',
+        url: `http://localhost:${port}/comments/title/${title}`
+    })
+}
+
 const postComment = (comment_body, user_id, showid) =>{
     return axios ({
         method: 'post',
@@ -111,6 +118,14 @@ const postComment = (comment_body, user_id, showid) =>{
         }
     })
 }
+
+const readShowForUser = (title, userid) =>{
+    return axios ({
+        method: 'get',
+        url: `http://localhost:${port}/shows/${title}/user/${userid}`,
+    })
+}
+
 
 export {
     readAllShows,
@@ -126,4 +141,6 @@ export {
     readUsersForShowID,
     readComments,
     postComment,
+    readShowForUser,
+    readCommentsByName,
 }

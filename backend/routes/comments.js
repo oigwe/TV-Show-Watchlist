@@ -17,6 +17,22 @@ tvShowRouter.get('/:showid', (req, res, next) => {
         });
 });
 
+//GET ALL COMMENTS FOR SPECIFIC SHOW BY NAME
+
+tvShowRouter.get('/title/:title', (req, res, next) => {
+    const {title} = req.params
+    CommentServices.readCommentsPerShowName(title)
+        .then(data => {
+            res.json({
+                "data": data
+            });
+        })
+        .catch(err =>{
+            next(err)
+        });
+});
+
+
 //POST COMMENTS FOR SPECIFIC SHOW
 
 tvShowRouter.post('/post/:showid', (req, res, next) => {

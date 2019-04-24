@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Watchers from '../components/usersWatching';
 
 const WatchList = (props) => {
+    console.log("Watch", props.watching)
     return (
         <div className="col" >
             {
@@ -23,6 +24,26 @@ const WatchList = (props) => {
                 }) : null
             }
             {
+                //USER PAGE FOR SPECIFIC SHOW
+                props.userShow ? props.userShow.map((e, i) => {
+                    return <div className="my-5" key={i} style={{ display: "inline-flex", flexWrap: "wrap", width: "50%", alignSelf: "center", backgroundColor: "white" }}>
+                            <div className="col">
+                                <Link to={`/show/${e.id}`}><img src={e.img_url} alt={e.title} style={{ height: '350px' }} /></Link>
+                            </div>
+                            <div className="col">
+                             <Link to={`/show/${e.id}`} style={{ color: "black" }}> <h2>{e.title}</h2></Link>
+                                <p style={{ color: "#dc3545" }}>{e.genre_name}</p>
+                                <h6 className="mt-5" style={{ color: "black" }}>Who's Watching?</h6>
+                                <div className="mt-2" style={{ overflow: "scroll", height: '50%' }}>
+                                    <ul>
+                                        <li>{e.username}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                }) : null              
+            }
+            {
                 //MASTER LIST
                 props.master ? props.master.map((e, i) => {
                     return <div className="my-5" key={i} style={{ display: "inline-flex", flexWrap: "wrap", width: "50%", alignSelf: "center", backgroundColor: "white" }}>
@@ -30,12 +51,12 @@ const WatchList = (props) => {
                                 <Link to={`/show/${e.id}`}><img src={e.img_url} alt={e.title} style={{ height: '350px' }} /></Link>
                             </div>
                             <div className="col">
-                                <Link to={`/show/${e.id}`} style={{ color: "black" }}> <h2>{e.title}</h2></Link>
+                             <Link to={`/show/${e.id}`} style={{ color: "black" }}> <h2>{e.title}</h2></Link>
                                 <p style={{ color: "#dc3545" }}>{e.genre_name}</p>
                                 <h6 className="mt-5" style={{ color: "black" }}>Who's Watching?</h6>
                                 <div className="mt-2" style={{ overflow: "scroll", height: '50%' }}>
                                     <ul>
-                                        <Watchers show={props.master} current={e.title} />
+                                        <Watchers show={props.master} current={e.title} watch={props.watching} />
                                     </ul>
                                 </div>
                             </div>
@@ -53,7 +74,7 @@ const WatchList = (props) => {
                                 <Link to={`/show/${e.id}`} style={{color: "black"}}> <h2 style={{ width: '100%' }}>{e.title}</h2></Link>
                                 <h6 style={{color: "#dc3545"}}>{e.genre_name}</h6>
                                 <h4 className="mt-5">Being Watched By...</h4>
-                                <Watchers show={props.profile} current={e.title} />
+                                <Watchers show={props.profile} current={e.title} user={props.current}/>
                             </div>
                         </div>
                 }) : null

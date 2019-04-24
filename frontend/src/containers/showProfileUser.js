@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 //FUNCTIONS
-import { readShow, readUsersForShowID, readComments, postComment } from '../services/main';
+import {readCommentsByName, readComments, postComment,readShowForUser} from '../services/main';
 
 //COMPONENTS
 import WatchList from '../components/isWatchingList';
@@ -11,15 +11,16 @@ import Comments from '../components/comments';
 
 
 
-class ShowProfile extends React.Component {
+class ShowProfileUser extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             tvShow: [],
             users: [],
             comments: [],
-            currentUser: [],
+            currentUser: JSON.parse(localStorage.getItem('currentUser')),
             commentInput: "",
+            test: []
         }
 
     }
@@ -29,10 +30,11 @@ class ShowProfile extends React.Component {
     }
 
     handleSubmit = (e) =>{
+        const title = this.props.location.pathname.split('/show/')[1].split('/user')[0];
         e.preventDefault()
         postComment(this.state.commentInput, this.state.currentUser.id, this.props.match.params.id)
         .then(()=>{
-            readComments(this.props.match.params.id)
+            readCommentsByName(title)
             .then((response) => {
                 this.setState({ comments: response.data.data })
             })
@@ -40,21 +42,16 @@ class ShowProfile extends React.Component {
 
     }
 
+
     componentDidMount() {
+        const title = this.props.location.pathname.split('/show/')[1].split('/user')[0];
+        const uId = this.props.match.params.id
+        readShowForUser(title, uId)
+        .then((response)=>{
+            this.setState({tvShow: response.data.data})
+        })
 
-        readShow(this.props.match.params.id)
-            .then((response) => {
-                this.setState({
-                    tvShow: response.data.data,
-                    currentUser: JSON.parse(localStorage.getItem('currentUser')),
-                })
-            })
-        readUsersForShowID(this.props.match.params.id)
-            .then((response) => {
-                this.setState({ users: response.data.data })
-            })
-
-        readComments(this.props.match.params.id)
+            readCommentsByName(title)
             .then((response) => {
                 this.setState({ comments: response.data.data })
             })
@@ -66,7 +63,7 @@ class ShowProfile extends React.Component {
             <div className="container p-5" style={{ backgroundColor: "white" }}>
                 {
                     this.state.tvShow.map((e, i) => {
-                        return <WatchList profile={this.state.tvShow} key={i} />
+                        return <WatchList userShow={this.state.tvShow} current={this.state.currentUser} key={i} />
                     })
                 }
             </div>
@@ -102,4 +99,4 @@ class ShowProfile extends React.Component {
     }
 }
 
-export default ShowProfile
+export default ShowProfileUser
