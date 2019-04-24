@@ -20,10 +20,9 @@ class Watchers extends React.Component {
     componentDidMount() {
 
         readUsersForShow(this.props.current)
-        .then((response)=>{
-            console.log("PT", response.data.data)
-            this.setState({tvShowsMaster: response.data.data})
-        })
+            .then((response) => {
+                this.setState({ tvShowsMaster: response.data.data })
+            })
         readUsersForShow(this.props.current)
             .then((response) => {
                 this.setState({ watching: response.data.data })
@@ -32,7 +31,7 @@ class Watchers extends React.Component {
 
 
     render() {
-     return (
+        return (
             <div>
                 {
                     this.state.watching.map((e, i) => {

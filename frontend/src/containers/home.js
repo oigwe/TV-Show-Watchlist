@@ -21,18 +21,15 @@ class Home extends React.Component {
     getUnique = (arr, comp) => {
         const newArr = [];
         arr.map((e, i) => {
-            console.log(e)
             return e[comp]
         })
             .map((e, i, arrOfTitles) => {
-                console.log(e, i, arrOfTitles)
                 return arrOfTitles.indexOf(e) === i
             })
 
             .filter((e, i) => {
                 if (e === true) {
                     newArr.push(arr[i])
-                    console.log(newArr)
                 }
                 return newArr
             })
