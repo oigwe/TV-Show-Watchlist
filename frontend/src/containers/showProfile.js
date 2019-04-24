@@ -66,7 +66,6 @@ class ShowProfile extends React.Component {
     }
 
     render() {
-        console.log("State", this.state)
         return (<>
             <div className="container p-5" style={{ backgroundColor: "white" }}>
                 {
