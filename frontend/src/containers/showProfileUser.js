@@ -18,7 +18,7 @@ class ShowProfileUser extends React.Component {
             tvShow: [],
             users: [],
             comments: [],
-            currentUser: JSON.parse(localStorage.getItem('currentUser')),
+            currentUser: JSON.parse(localStorage.getItem('currentUser')) || {id: 1, username: "Jon Snow"},
             commentInput: "",
             masterList: [], 
         }
@@ -36,7 +36,6 @@ class ShowProfileUser extends React.Component {
             .then(() => {
                 readCommentsByName(title)
                     .then((response) => {
-                        console.log("REp", response.data.data)
                         this.setState({ comments: response.data.data,
                         commentInput: '' })
                     })

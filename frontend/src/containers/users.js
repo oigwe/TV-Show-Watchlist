@@ -50,7 +50,7 @@ class User extends React.Component {
         readAllUsers()
             .then((response) => {
                 this.setState({
-                    currentUser: JSON.parse(localStorage.getItem('currentUser')),
+                    currentUser: JSON.parse(localStorage.getItem('currentUser')) || {id: 1, username: "Jon Snow"},
                     users: response.data.data
                 })
             })
