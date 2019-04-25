@@ -50,7 +50,7 @@ class ShowProfile extends React.Component {
             .then((response) => {
                 this.setState({
                     tvShow: response.data.data,
-                    currentUser: JSON.parse(localStorage.getItem('currentUser')),
+                    currentUser: JSON.parse(localStorage.getItem('currentUser')) || {id: 1, username: "Jon Snow"},
                 })
             })
         readUsersForShowID(this.props.match.params.id)
