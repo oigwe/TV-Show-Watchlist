@@ -1,7 +1,7 @@
 # TVDB
 
 ## Project Results: Preview
-![alt-text](frontend/src/assets/Jan-22-2020 02-40-54.gif)
+![alt-text](Jan-22-2020 02-40-54.gif)
 
 ## The Ask
 
