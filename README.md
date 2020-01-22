@@ -1,7 +1,7 @@
 # TVDB
 
 ## Project Results: Preview
-![alt-text](tv-show-watchlist/frontend/src/assets/Jan-22-2020 02-40-54.gif)
+![alt-text](TV-Show-Watchlist/frontend/src/assets/Jan-22-2020 02-40-54.gif)
 
 ## The Ask
 
